@@ -1,0 +1,41 @@
+============================================================
+SHL ASSESSMENT ADVISOR — VALIDATION REPORT
+============================================================
+
+Total assessments: 317
+
+── STATISTICS ──────────────────────────────────────────
+  total                    : 317
+  with_url                 : 317 (100%)
+  with_description         : 317 (100%)
+  with_duration            : 291 (92%)
+  with_job_levels          : 311 (98%)
+  with_skills              : 135 (43%)
+  with_rec_for             : 112 (35%)
+  with_biz_problems        : 129 (41%)
+  remote_testing           : 317 (100%)
+  adaptive_irt             : 37 (12%)
+
+  type_distribution:
+    A: 23
+    B: 8
+    C: 8
+    D: 1
+    E: 1
+    K: 234
+    P: 14
+    S: 28
+
+── CRITICAL ISSUES (must fix) ───────────────────────────
+  ✓ No critical issues
+
+── WARNINGS (should fix) ────────────────────────────────
+  ⚠ Missing job_levels: 6 items — e.g. [49] Business Communications
+
+── INFO (enrichment gaps) ───────────────────────────────
+  ℹ Missing duration: 3 items — e.g. [235] Sales Transformation 1.0 - Individual Contributor
+  ℹ No skills_measured: 182 items — e.g. Accounts Payable (New)
+  ℹ No recommend_for: 205 items — e.g. Accounts Payable (New)
+  ℹ No business_problems: 188 items — e.g. Accounts Payable (New)
+
+============================================================
