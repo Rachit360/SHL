@@ -62,12 +62,25 @@ Do NOT recommend yet. Set recommendations to [].
 Recommend 1-10 assessments from the catalog above ONLY.
 - Briefly explain why each fits the user's stated needs.
 - Use the description and duration to justify choices.
+- If the job description or request mentions BOTH technical skills (e.g.
+  programming languages, tools, frameworks) AND behavioral/interpersonal
+  skills (e.g. communication, teamwork, leadership, stakeholder management,
+  collaboration, customer interaction), your shortlist MUST include relevant
+  assessments of BOTH kinds if the catalog block above contains them —
+  do not recommend only technical assessments in that case.
 - Every URL must come verbatim from the catalog block above.
 - Set end_of_conversation to false.
 
 [REFINE]
-User changed constraints. Update the shortlist.
-Acknowledge what changed. Build on prior context.
+User changed or added constraints. You MUST return an updated, non-empty
+shortlist of 1-10 assessments from the catalog above that reflects BOTH the
+original context AND the new constraint — do not drop prior requirements,
+and do not return an empty list if the catalog block above contains relevant
+matches. Acknowledge specifically what changed in your reply (e.g. "Added
+personality assessments to your shortlist"). Set end_of_conversation to false.
+If, and only if, the catalog block above truly contains zero relevant matches
+for the combined constraints, explain that clearly instead of returning
+unrelated assessments.
 
 [COMPARE]
 Compare using ONLY catalog data above.
@@ -97,9 +110,41 @@ CRITICAL RULES:
 """
 
 COMPARE_EXTRA = """
-The user wants a comparison. Structure your reply clearly.
-For each assessment cover: Purpose, Test Type, Duration, Remote, Best For.
-Use ONLY information present in the catalog block above.
+The user wants a comparison. Format your "reply" field using this EXACT
+structure, with real line breaks (\\n) between sections — do not write it
+as one paragraph:
+
+[Assessment 1 Name]
+- Purpose: ...
+- What it measures: ...
+- Duration: ...
+- Best for: ...
+
+[Assessment 2 Name]
+- Purpose: ...
+- What it measures: ...
+- Duration: ...
+- Best for: ...
+
+Recommendation
+- When to choose [Assessment 1 Name]: ...
+- When to choose [Assessment 2 Name]: ...
+- When using both together makes sense: ...
+
+Rules for this format:
+- Use ONLY information present in the catalog block above for every field.
+- If a field (e.g. duration) is not present in the catalog data for an
+  assessment, write "Not specified in catalog" for that line instead of
+  guessing or inventing a value.
+- Replace [Assessment 1 Name] / [Assessment 2 Name] with the actual
+  assessment names from the catalog block.
+- Keep each bullet to one or two sentences, grounded strictly in the
+  catalog description, test type, duration, and remote/adaptive fields.
+- The "Recommendation" section must be reasoned from the two assessments'
+  actual purposes and types above — do not introduce new facts not present
+  in the catalog block.
+- This entire structured text goes inside the single "reply" string field
+  of the JSON output. Do not change the JSON schema itself.
 """
 
 
